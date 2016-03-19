@@ -7,9 +7,8 @@ infile <- "Rawdata/household_power_consumption.txt"
 hpc <- read.csv(infile, header = TRUE, sep = ";", na.strings = "?")
 hpc <- subset(hpc, hpc$Date %in% c("1/2/2007", "2/2/2007"))
 
+## Copy plot to png file
+png(file = "Plot1.png")
 ## Display histogram setting bin colour to red. Also set main title and x-axis label
 with(hpc, hist(Global_active_power, col = "red", main = "Global Active Power", xlab = "Global Active Power (kilowatts)"))
-
-## Copy plot to png file
-dev.copy(png, file = "Plot1.png")
 dev.off()

@@ -7,8 +7,9 @@ infile <- "Rawdata/household_power_consumption.txt"
 hpc <- read.csv(infile, header = TRUE, sep = ";", na.strings = "?")
 hpc <- subset(hpc, hpc$Date %in% c("1/2/2007", "2/2/2007"))
 
-
-par(mfrow = c(2, 2), mar=c(3.1,4.1,3.1,2.1))
+## Copy plot to png file
+png(file = "Plot4.png")
+par(mfrow = c(2, 2))
 with(hpc, plot(Global_active_power, type = "l", xaxt = "n" ,xlab = "", ylab = "Global Active Power (kilowatts)"))
 axis(1, at = c("1","1440","2880"), labels = c("Thur", "Fri", "Sat"))
 
@@ -23,7 +24,4 @@ legend("topright",bty="n", lty=1, lwd=1, col = c("black","blue", "red"), legend 
 
 with(hpc, plot(Global_reactive_power, type = "l", xaxt = "n" ,xlab = "DateTime"))
 axis(1, at = c("1","1440","2880"), labels = c("Thur", "Fri", "Sat"))
-
-## Copy plot to png file
-dev.copy(png, file = "Plot4.png")
 dev.off()

@@ -7,10 +7,9 @@ infile <- "Rawdata/household_power_consumption.txt"
 hpc <- read.csv(infile, header = TRUE, sep = ";", na.strings = "?")
 hpc <- subset(hpc, hpc$Date %in% c("1/2/2007", "2/2/2007"))
 
+## Copy plot to png file
+png(file = "Plot2.png")
 ## Display plot, setting chart type to line. Also set x-axis label and tick labels to days of the week
 with(hpc, plot(Global_active_power, type = "l", xaxt = "n" ,xlab = "", ylab = "Global Active Power (kilowatts)"))
 axis(1, at = c("1","1440","2880"), labels = c("Thur", "Fri", "Sat"))
-
-## Copy plot to png file
-dev.copy(png, file = "Plot2.png")
 dev.off()
